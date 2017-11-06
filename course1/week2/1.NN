@@ -1,0 +1,34 @@
+Week1:
+1. Relu: rectified linear unit
+2. network types:
+	Standard NN: home price predict/Real Estate
+	CNN: Photo tagging
+	RNN: Speech recognition/machine tranlation(sequence data)
+	Hybird custom: auto driving
+2. structured data vs unstructured data: images, audio, text
+3. main divers that deep leanring took off: 
+	SCALE: data, computation and algorithms(sigmoid -> Relu)
+		- performance can grow with data using NN, but not grow using traditional learning
+		- performace can grow with the size of NN
+	shorter cycle
+Week2: Logistic Regression as a NN
+1. No loop every training example, PB and BP
+	enroll all training images into X(n*m), y(1*m)
+2. y'=zigmoid(wTX+b) keep w and b seperate: not seperate:add X0=1, thetaT*X, theta0 * X0 = b,  
+3. LR cost function: error func: not use square error, as Gradient descent finds local optima. Use L(y,y')=-(y*logy' +(1-y)log(1-y'))
+	cost function applies to entire training eg. J(w,b)=sum_i_m(L(yi,y'i))/m
+4. Cost J, Loss, y', Gradient. J must be 凸convex函数来使用GD. d and patial derivative
+6. derevative means slope. how much y increase over how much x increase
+7. computational grapph: J(a,b,c)=
+8. derivative of computational graph. d(FinalOutputVar)/d(var) -> dJdvar -> dvar: var is dynamic like da, dv...
+	J=3v, v=a+u, u=bc. chain rule: dJ/db = dJ/du * du/db
+9. computation graph of LogisticR
+11. Vectorization, SIMD(para execute), 
+12. np.dot(a,b), u = np.exp(v), np.abs, np.log, ... avoid for loop and look for implemtation in numpy
+13. whole Vectorization of LogisticR
+14. whole Vectorization for LR BP
+15. broadcasting in Python(numpy). A.sum(axis=0); percentage=100*A/(cal.reshape(1,4)) 这里即是broadcasting: 3*4矩阵除以1*4矩阵, 即　自动扩行/列, [1,2,3,4]T + 100,可以把１００扩行/列, 然后使用.*, .+, ./ .....
+16. 
+
+
+jupyter --path
