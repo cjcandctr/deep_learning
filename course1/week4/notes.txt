@@ -1,0 +1,17 @@
+___________________________________________________
+2017-11-15 14:02:50
+Course1 Week4
+Why deep representations: 直观理解 1层检测边缘;2层检测边缘组合;3层检测模块...
+	circuit theory: a function small deep neural network compute, that shallower network require exponentially more hidden unites to compute
+	DeepNN is a good branding; 
+	从LR开始, 由浅入深寻找NN层数
+
+Forward and Backward propagation: 公式在此视频中, 课后练习中也有
+	记不住没关系, 数据量大 有时候写错了也work.....
+
+Parameters vs hyperparameters: hyperparameters like #iterations; hiddenlayers; hidden units; learning rate; activation function; ..... that control the basic parameters 
+	empirical process, trail and fail, compare the result(cost with iteration)
+
+What does this have to do with the brain: 公式在此视频开头, 课后练习中也有
+	
+___________________________________________________
