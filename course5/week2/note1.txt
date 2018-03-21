@@ -1,0 +1,43 @@
+1. Word Represetation:
+	1-hot representation, no relation between words. inner product is 0
+	I want a glass of orange __.  I want a glass of apple __.
+	5:00 word embedding. features 与word的笛卡尔积, 量化表示相互关系
+	Visualizing word embeddings: t-SNE. Feature 与 word共同投影在多维空间(300D), 成为embedding
+2. Using word embeddings:
+	Named entity recognition example
+	download pretrained word embeddings, then Transer leanring to new task with smaller training set; 
+	named entity recogniton, co-reference resolution,text summarization
+	relation to face encoding
+3. Properties of word embeddings:
+	analogies(比喻), man is to woman as king is to queen
+	maxize similarity
+	cosine similarity sim(ew, e_king - e_man + e_woman), or Euclidian distance, or square distance. but cosine is most used
+4. Embedding matrix
+	E*onehot_6257 = e_6257  index from matrix to vector
+5. Learning word embeddings:
+	input: e4343 e9665 e1 .... into NN, and output softmax
+	Other context/target pairs: skip gram, nearby 1 word as context/target works well for language model. 
+6. Word2Vec:
+	Skip-grams: randomly pick a context, randomly pick target, calculate posibility P(t|c) and learn word embedding.
+	P(t|c) softmax and hierarchical softmax(use tree to fix sum up through vocab)
+	context choosing: avoid extremly word like: in, of, at....
+7. Negative Sampling:
+	solve donw side of softmax problem
+	mark correct context/target: orange:juice, then randomly pick k(5-20) word from vocab as target and mark as negative
+	Model: P(y=1|c,t)=
+	selecting negative exmple: use 3/4 power as possibility
+8. GloVe word vectors:
+	GloVe: X_ij=#times i appears in context of j.  X_ij = X_ij
+	model, minimize
+	featurization view of word embeddings: not human interpretable as ....
+9. Sentiment Classification
+	情绪分类: comments to stars
+	with word embedding, the algorithm average the means of each word, but problem is, "not good at all" doesn't work
+	RNN for sentiment classification
+10. Debiasing word embeddings:
+	not bias variance problem, but: Man:Computer_programmer as Woman:Homemaker; Father:Doctor as Mother:Nurse
+	ML model need to diminish these bias as it's used to many important scenarios.
+	reduce bias/addressing bias in word embeddings
+		1.Identify bias direction(like gender) manually minus and average(or SVU, PCA) he - she; mal - female; boy-girl...
+		2.Neutralize:  eliminate their(doctor, programmer) component in the bias direction
+		3.Equalize pairs.

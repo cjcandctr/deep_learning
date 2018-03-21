@@ -1,0 +1,27 @@
+1.Carrying out error analysis
+	class and sum up each misclass example, using spredsheet. different columns means different reason of misclassification
+
+2.Cleaning up incorrectly labeled data
+	if randomly mislbeled, it's ok for DL(robust)
+
+3.Build your first system quickly, then iterate
+	Speech recognition example
+	
+4.Training and testing on different distributions
+	put the most data of user generated data(another distribution) to dev and test set, instead of put them randomly into training set
+
+5.Bias and Variance with mismatched data distributions
+	when distibution different: training error 1%, dev error 10% -> break: training set into training/dev set
+	human level, training set error, training-dev set error, dev error, test error
+	
+6.Addressing data mismatch
+	make training data more like dev set
+	artificial data synthesis: 合成像dev set一样的数据, 另外生成一些数据
+	be caureful of subset issue
+7.Transfer learning
+	学习辨别猫, 然后复用这个模型识别中放射图(诊断)
+	如果放射图的数据很少, 只需重新训练最后一层;数据多则重训练后几层
+	因为深层的(前几层)单元抓住的是图像边缘特征,颜色块, 形状等信息, 这些在不同的领域都适用
+	语音识别 -> trigger word
+	适用场景取决于数据量, 输入数据类型相同
+8.

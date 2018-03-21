@@ -1,0 +1,44 @@
+1. Tuning process:
+	alpha, beta 0.9, hidden units, learning rate decay, mini-batch size, layers
+	random order/sample, zoom-in search. because different parameter have diff importancy/effect
+2. 	Using an appropriate scale to pick hyerparameters(how to random sampling):
+	use log scale to sample alpha between 0.0001 ~ 1: r= -4*np.random.rand(), a=10^r
+	use ... to sample beta between 0.9 ~ 0.999: 1-beta:0.1~0.001, r-[-3,-1]
+	coarse to fine 由粗到精
+3. hyperparameters tuning in practice: pandas vs Caviar
+	area: NLP,Vision, Speech, Ads, logstics,...
+	babysitting one model; Training many models in parallel
+4. normalizing activations in a network:
+	batch normalization
+	normalize the activation(z not a) instead of input x data samples.
+	use zTilde instead z when computing the NN
+	mean and variance is controlled by two parameter(gama and beta)
+5. Fitting Batch Norm into a neural network
+	compute z, then z norm, then z tilde
+	no point to use b any more
+	batch norm with mini-batch
+6. Why does batch Norm work:
+	coveriate shift: train with black cats, predicting color cats
+	stable, keep the same mean and variance
+	batch norm have also similar effect to dropout. it adds some noise to each hiddden layer's activations. also has slight regularization effect
+7. Batch Norm at test time:
+	batch norm fomular.
+	every mini-batch has its own mu, sigema^2 -> get the running average to generate mu and sigema^2 for test
+8. Softmax Regression:
+	C #of classes, so is the output layer which will add up to 1.
+	at layer L, Z is calculated the same while the activation is different: input vector output vector
+		t=e^z
+		a_i=t_i/sum(t_i)	
+9. Training a softmax classfier:
+	naming from hard max, choose the max z and mark it 1 hard.
+	loss function fomular: different when multi output
+	BP is different
+10. Deep learning frameworks:
+11. TensorFlow:
+	use tensor flow to mi
+	tf.Variable, tf.add(), trainOptimizer, init, tf.Session(), session.run(train[w,init])
+	coefficients=np.array[training data], tf.placeholder, tr.run(train, feed_dict={placeh:coefficients})
+	TF的核心是自动计算导数, 并且做最优化. (computation graphs)
+	
+	
+epoch

@@ -1,0 +1,49 @@
+1. Why sequence models
+2. Notation: named entity recognition
+	word position indexing: feature X<t>, y<t>, Tx= length of word, x(i)<t> t th element of ith training example, Tx(i)= length of ith example
+	NLP, representing words: one hot vector: vocabulary lib 30 -50k, online dictionaries.
+3. Recurrent Neural Network Model: 
+	standard network not problems: input output different length, not applicable, too much features
+	RNN structure: a从左到右, x从下到上, Wax, Waa, Wya
+	Bidirectional RNN: RNN only takes information from previous word, not following words
+	Forward Propagation: a<1>= g(Waa*a<0> + Wax*x<1> + ba); yhat<1>=g(Wya*a<1> + by);  g could be tanh or Relu, for yhat, g could be sigmoid, soff Max, 
+	Simplified RNN notation: a<t>=g(Waa*a<t-1> + Wax*x<t> + ba)  ->   a<t>=g(Wa[a<t-1,x<t>] + ba)    ; yhat<t>=g(Wy*a<t> + by) remains the same
+		dimissions: Waa:100*100, a<t-1>:100*1, Wax:(100*10000), x<t>:1000*1, ba: 100*1,   Wa(即[Waa|Wax]):100*10100 横着把Waa与Wax放一起, [a<t-1>,x<t>]: 10100*1 竖着落一起
+		即 [Waa|Wax]*[a<t-1>,x<t>] = Waa*a<t-1> + Wax*x<t>
+4. Backpropagation through time:
+	loss definition: crsoo entropy loss(standard logistic regression loss)
+	L<t>(yh<t>,y<t>)= -y<t>*logyh<t> -(1-y<t>)*log(1-yh<t>)
+	L(yh, y)= sum:t:1-m(L(t))
+5. Different types of RNNs:
+	在named entity recognition 场景, input Tx = Ty; 但在翻译, 自动打分, 等, Tx != Ty, 所以 RNN architecture 会不一样
+	many to many arch; many to one arch; one to many(musical ).....
+	many to many: encoder, decoder 
+	summary of RNN types: 8:00
+6. Language model and sequence generation
+	lauguage modeling: P(the apple and pair salad)=? P(the apple and pear salad)=?
+	at 10:00 Cost L(yhat<t>, y<t>)=-sum(yi<t>*log(yhi<t>))
+7. Sampling novel sequences
+	my understanding is, this sampling is for generation
+	sampling a sequence from a trained RNN
+	character-level language model:  longer sequences, computation expense
+	I still dont know why sampling a novel sequence is needed
+8. Vanishing gradients with RNNs:
+	long term dependencies. when backprop, gradent cannot affect parameter change in the early layers
+	the cat(s), which ate a lot of food which are ........, was(were) full.
+	exploding gradients
+9. Gated Recurrent Unit(GRU):
+	address vanishing gradients problem, long range dependencies
+	RNN unit picture
+	GRU(simplified) c =memory cell: c<t>=a<t>, c_tidle<t>(a candidate to update c)=tanh(Wc[c<t-1>,x<t>]+bc), Gamma_u(mean update gate)=sigmoid(Wu[c<t-1>,x<t>] + bu), c<t>=Gamma_u * c)tidle<t> + (1-Gamma_U)*c<t-1>
+	picture of GRU
+	14:00 Full GRU
+10. Long Short Term Memory(LSTM):
+	c_tidle<t>, upadat gate, forget gate, output gate, c<t> and a<t>
+	peephole connection
+11. Bidirectional RNN:
+	多一倍的竖线(block)来存反向的a, 最终的y_hat是由x与两个a共同决定的
+	同样适用LSTM
+12. Deep RNNs:
+	a[1]<0>
+	对于RNN三层是比较适中的
+	4:20 但从a输出y时候, 可以加任意的层

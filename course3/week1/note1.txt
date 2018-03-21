@@ -1,0 +1,40 @@
+1. Why ML strategy
+	more data, diverse data, longer, Adam/GD, bigger net
+	analyze and direction
+2. Orthogonalization 正交化 Orthogonal
+	training well on cost -> dev set -> test set -> real world
+	bigger net,Adam -> Regularization, bigger traing data -> bigger dev set -> change dev set or cost function
+3. Single number evaluation metric
+	precision & recall -> F1 Score(2/(1/p + 1/r)) Harmonic mean
+	single row number(F1..) to speed up the "Idea Code Experiment"
+4. Sitisficing and Optimizing metric
+	accuracy as optimizing metric while running time as satisficing metric(could be threshlod like given runningT<=100ms)
+5. Train/dev/test distributions
+	comes from the same distribution is very important
+6. Size of the dev and test sets
+	7-3, 6-2-2 is reasonable when small data
+	98-1-1 when big data
+
+7.When to change dev/test sets and metrics
+	3% error rate VS 5% rate: change metric of error rate
+	change dev/test set example: different distrubution of cats(better framed, high resolution VS blur strange)
+
+8.Why human-level performance	
+	Bayes optimal error (as no one can recognize )
+	human-level performace
+	get labeled data from humans; gain insight from manual error analysis; better analysis of bias/variance
+
+9.Avoidable bias
+	between bayes error and training error is avoidable, bias issue
+
+10.Understanding human-level performance
+	proxy of Bayes error, the best that human(team) can do.   team of human *******
+	another thing is, performace of ML system surpass a experienced person error that can be deployed to production.	One human
+	different human-level affects tactics of model tuning for training error and dev error(doctor scenario)
+	
+11.Surpassing human-level performance
+	less clear goal, no direction
+	areas that surpassed: online advertising; product recommendations; Logistics(predicting transit time); Loan approvals --> structured data, lots of data, not natual perception(非自然感知)
+
+12.Improving your model performance
+	guideline: 1 fit training set pretty well

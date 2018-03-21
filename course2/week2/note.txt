@@ -1,0 +1,40 @@
+1. Mini-batch gradient descent:
+	split the large training set(like 100K) into small batches(like 1K), then train with the batch
+	epoch mean a single pass thougth gradient descent
+2. Understanding mini-batch gradient descent:
+	cost diagram difference: noisier
+	choosing mini-batch size: size=m, normal batch GD; size=1, stochastic GD
+	contur diagram difference between batch GD(too slow) and stochastic(no vectirzation, too little progress), mini-batch GD(fine)
+	2000<m, use batchGD; use 2^n as minibatch size; make sure minibatch fits in CPU/GPU memory(bandwith)
+3. Exponentionally weighted averages:
+	it is a statistic algorithm(Exponentionally weighted (moving) averages). 
+	Vt=beta*Vt-1 + (1-beta)*Thetat
+	totalAverageCount = 1/(1-beta) 
+4. Understanding exponetially weighted averages:
+	循环带入
+5. Bias correction in exponentially weighted agerage:
+6. Gradient descent with momentum(动量, 气势):
+	VdW=beta*VdW + (1-beta)dW
+	Vdb = ...
+	W = W-alpha*VdW  ***
+	dW is like the accelerate, VdW is like the velocity
+	pratice: beta usually  =0.9, bias 	
+7. RMSprop:
+	SdW= beta*SdW + (1-beta)dW^2
+	Sdv=...
+	W:=W-alpha*dW/sqrt(SdW)
+	add epsilon in case of divide by 0.
+	Jeff Hiton on coursera
+8. Adam optimization:
+	RMSprop and momentum are widely used on many network, generates well.
+	Adam optimization, combines the two algorithm
+	Hyperparameters choice: alpha, beta1 0.9, beta2 0.999, epsilong: 10^-8, 
+	Adaptive Moment Estimation
+9. Learning rate decay:
+	1 epoch means 1 pass through 
+	alpha = 1/1+ decay-rate * epoch-number
+	other decay methods: alpha = 0.95^epoch-number * alpha0 (exponential decay), ......
+	manually decay
+10. The problem of local optima:
+	鞍点(像马鞍一样)Saddle Point, 维度越高, 越不会遇到local optima. 
+	problem of plateaus(停滞区):导数长时间接近于0

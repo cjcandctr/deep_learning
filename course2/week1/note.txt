@@ -1,0 +1,61 @@
+Train/Dev/Test sets:
+	60/20/20: with small data
+	98/1/1:	big data like 1,000,000 - the amount of dev and test data set could be 10000 around
+	dev and test set come from same distribution(no need for training set)
+Bias and Variance:(underfitting and overfiting)
+Basic Recipe for ML: 
+	High bias(training data)->big network(more hidder larer), train longer, NN architecture
+	high V (dev set data)-> more data, regularization, NN architecture
+	there is a trade-off in traditional ML, but in deep learning, there is no hurting between Bias and Variance
+Regularization: 
+	Logistic regression 
+	L2 regularization: lambda/2m*|w|^2
+	L1 norm: sparse, lambda/2*m*|w|
+	Neural network
+	Frobenius norm: lambda/2m * sum(|w|^2)
+	8:20 gradient decent of dw update: dw = ...+ 
+		weight decay
+why regularization reduces overfitting:
+dropout regularization: 
+	randomly elimating some nodes of hidden layer
+	Inverted dropout
+	(boolean array) d3= np.random.rand(row, column) < keep-prob
+	a3=np.multiply(a3, d3)
+	a3 /= keep-prob
+	Test time: no dropout considered in fomular
+Understanding Dropout:
+	cannot rely on any one feature, so have to spread out weights.
+	more units hidden layer, the keep-prob for the W would be lower
+	computer vision use dropout a lot
+	downside: J is not well defined, the cost diagram won't work the same.
+Other regularization method:
+	when training data is limit, we can augment the data by flipping horizontally, rotating, zooming.....
+	early stopping
+Normalizing inputs:
+	mu=sum(x)
+	x;=x-mu
+	sigma^2=sum(x)^2/m
+	x/=sigma^2
+	same mu and sigma^2 for train and test data
+Vanishing/Exploding gradients:
+	initialization value for w: w should be a LITTLE BIT greater/less than I(1)
+Weight Initialization for Deep Networks:	
+	WL = np.random.rand(shape)*np.sqrt(2/n)
+	Xavier initialization
+	goal is, control the variance of W
+Numerical approximation of gradients:
+	approximation of the derivative
+	two side difference is more accurate
+Gradient checking:
+	concat all parameters into theta
+	J(theta)=J(t1,t2,t3...)
+	dThetaApp[i]= J(t1,t2,...ti+epi,...) - J(t1,t2,...,ti-epi,...)/2* epi
+	|dThetaApp-dTheta|/|dThetaApp|+|dTheta|, using epi=10^-7
+	=10^-7,	=10^-5, =10^-3
+Gradient Checking Implemtation Notes:
+	Don't use in training, only for debug
+	if algorithm fails grad check, look at comonents to try to indentify bug
+	remember regularization
+	doesn't work with dropout
+	run at ramdom initialization, perhaps again after some training
+	

@@ -1,0 +1,50 @@
+1. Basic Models:
+	sequence to sequence model
+	encoder decoder structure
+	works for Image captioning(with pretrained Alexnet architechture): a cat sitting on a chair
+2. Picking the most likely sentence
+	Machine translation model: (Conditional language model)encoder decoder structure 
+	P(y_hat<1>,y_hat<2>,...y_hat<Ty>|x), greedy search VS Beam search(类似动态规划)
+3. Beam Search:
+	beam width. B=3 means considering 3 choices at a one run(through out all steps, only keep top 3 choiecs)
+	P(y<1>, y<2>|x) = P(y<1>|x)*P(y<2>|x,y<1>)
+	first step: y<1> 3 candidate with possibility. then P(y<1>,y<2>|x); Then P(y<3>|x,"firstWord_1 secondWord_1") P(y<3>|x,"firstWord_B secondWord_B")
+4. Refinements to Beam Search
+	Length normalization
+	arg max_product_t=1_Ty P(y<t>|x,y<1>....y<t-1>)   for computer calculation(小数太长), using sum and log instead:
+	arg max_sum_t=1_Ty logP(y<t>|x,y<1>.....y<t-1>)	  进一步优化
+	上一步公式/Ty*alpha  as normalization
+	How to choose: B: better result with exponential slower (consider 3-10. 100 unusual.), alpha
+	BFS(BreadFirst) DFS(DepthFirst) vs Beam Search(not guaranted for exact max for P)
+5. Error analysis in beam search:
+	heuristic search algo, need to know where is the problem, in Beam or RNN structure, or...
+	Eg:  y_star human translation, y_hat RNN output -> compute and compare P(y_star|x) P(y_hat|x)
+		if P(P_star|x) > P(y_hat|x), then means Beam doesn't find P(P_star|x)
+		if P(P_star|x) <= P(y_hat|x), then means then RNN doesn't predict well.
+	then take 100 examples, check whom(Beam or RNN) to blame
+6. Bleu Score(optional):
+	multiple equally good translations
+	blue(bilingual evaluation understudy) score measure the machine translation
+	isolation measurement: Modified precision: count of word appears/total words  precision: whether word appears in target translation. 
+	pair(s) of words measurement: 8:00 take 2 words example: 两词一组, 按组查出出现次数(翻译的count/目标(可以多个)的count)
+	10:00 公式: P_1=sum_unigrams(Count_clips(unigrams))/sum_unigrams(Count(unigrams)) P_2.... P_n=
+	BP*exp(sum_1_4(P_n))  brevity penalty
+7. Attention Model Intuition
+	Attention Model: optimization(encoder decoder) for long sentences. bidirection RNN(GRU or LSTM) as encoder, but decoder have a context parameter
+	attention weight: alpha<1,1>, considering all alpha as context parameter c.
+8. Attention Model:
+	4:00 alpha<t,t'> 
+	alpha<t,t'> amount of attention that y<t> should pay to a<t'>
+	6:13 computing attention formula alpha<t,t'>=exp(e<t,t'>)/sum_t'_1_Tx(e<t,t'>) making sure alpha<t,t'> sum to 1; use little NN to compute e<t,t'> 
+	??what's t' and e<t,t'> and a<t'>??
+	Attention Model can also apply to image caption 
+	input different dates format and output standard format
+	visualization of a<t,t'>
+9. Speech recognition:
+	microphone measures minuscule changes in air pressure. pressure image and frequencies image of audio
+	phonemes way
+	300h - 3000h - 100000h dataset
+	CTC cost for speech recognition. (attention model works too but not ...)
+	1000 input x but not so much output: CTC use blank
+10. Trigger Word Detection:
+	output y representation 0 and 1
